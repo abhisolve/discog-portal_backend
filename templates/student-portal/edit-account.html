@@ -1,0 +1,116 @@
+{% extends 'student-portal/base.html' %}
+{% load static %}
+{% block page-content %}
+<div class="container-fluid page__container p-0">
+    <div class="row m-0">
+        <div class="col-lg container-fluid page__container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="student-dashboard.html">Home</a></li>
+                <li class="breadcrumb-item active">Edit Account</li>
+            </ol>
+            <h1 class="h2">Basic Information</h1>
+            <div class="card">
+	      <ul class="nav nav-tabs nav-tabs-card">
+		<li class="nav-item">
+		  <a class="nav-link active show" href="#first" data-toggle="tab">
+		    Account
+		  </a>
+		</li>
+	      </ul>
+
+	      <div class="tab-content card-body">
+		
+		<div class="tab-pane active show" id="first">
+
+		  <form action="#" class="form-horizontal">
+
+		    <div class="form-group row">
+		      <label for="avatar" class="col-sm-3 col-form-label form-label">Avatar</label>
+		      <div class="col-sm-9">
+			<div class="media align-items-center">
+			  <div class="media-left">
+			    <div id="image-preview" class="icon-block rounded">
+			      <i id="img-icon" class="material-icons text-muted-light md-36">photo</i>
+			    </div>
+			  </div>
+			  <div class="media-body">
+			    <div class="custom-file" style="width: auto;">
+			      <input type="file" id="avatar" class="custom-file-input">
+			      <label for="avatar" class="custom-file-label">Choose file</label>
+			    </div>
+			  </div>
+			</div>
+		      </div>
+		    </div>
+
+		    <div class="form-group row">
+		      <label for="name" class="col-sm-3 col-form-label form-label">First Name</label>
+		      <div class="col-sm-8">
+			<div class="row">
+			  <div class="col-md-6">
+			    <input id="first-name" type="text" class="form-control" placeholder="First Name">
+			  </div>
+			</div>
+		      </div>
+		    </div>
+
+		    <div class="form-group row">
+		      <label for="name" class="col-sm-3 col-form-label form-label">Last Name</label>
+		      <div class="col-sm-8">
+			<div class="row">
+			  <div class="col-md-6">
+			    <input id="last-name" type="text" class="form-control" placeholder="Last Name">
+			  </div>
+			</div>
+		      </div>
+		    </div>
+		    
+		    
+		    <div class="form-group row" hidden>
+		      <label for="password" class="col-sm-3 col-form-label form-label">New Password</label>
+		      <div class="col-sm-6 col-md-4">
+			<div class="input-group">
+			  <div class="input-group-prepend">
+			    <div class="input-group-text">
+			      <i class="material-icons md-18 text-muted">lock</i>
+			    </div>
+			  </div>
+			  <input type="password" id="password" class="form-control" placeholder="Enter new password">
+			</div>
+		      </div>
+		    </div>
+
+		    <div class="form-group row" hidden>
+		      <label for="password" class="col-sm-3 col-form-label form-label">Confirm Password</label>
+		      <div class="col-sm-6 col-md-4">
+			<div class="input-group">
+			  <div class="input-group-prepend">
+			    <div class="input-group-text">
+			      <i class="material-icons md-18 text-muted">lock</i>
+			    </div>
+			  </div>
+			  <input type="password" id="password" class="form-control" placeholder="Confirm new password">
+			</div>
+		      </div>
+		    </div>
+		    
+		    <div class="form-group row">
+		      <div class="col-sm-8 offset-sm-3">
+			<div class="media align-items-center">
+			  <div class="media-left">
+			    <a href="#" class="btn btn-success">Save Changes</a>
+			  </div>
+			</div>
+		      </div>
+		    </div>
+		  </form>
+		</div>
+	      </div>
+            </div>
+	</div>
+    </div>
+</div>
+{% endblock page-content %}
+{% block page-internal-drawer %}
+{% include 'student-portal/page-drawer.html' %}
+{% endblock page-internal-drawer %}

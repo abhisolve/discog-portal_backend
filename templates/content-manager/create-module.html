@@ -1,0 +1,109 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block page_title %}
+{% if title %}{{title}}{% endif %}
+{% endblock page_title%}
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/ui/trumbowyg.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/create-module.css' %}" />
+<link rel="stylesheet" href="{% static 'css/assignments-dashboard.css' %}" />
+{% endblock %}
+{% block welcome_note %}Module Builder{% endblock welcome_note%}
+{% block content %}
+<div class="container-fluid">
+  <div class="topnav filter-panel-items-width"
+    style="border-bottom:1px solid #cbcccd; margin-bottom: 0;padding: 0.47rem;">
+    <small class="filter-panel-heading">
+      <a href="{% url 'contentmanager:content-manager-home' %}" class="text-center back-link-font-color">
+        < Back To content Manager Dashbaord</a>
+    </small>
+  </div>
+  <!-- Begin Add Module Form -->
+  <div class="container mt-5">
+    <form id="createModuleForm" onsubmit="submitCreateModuleForm(event)">
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="module-title">Module Title *</label>
+          <input type="text" id="moduleTitle" name="title" placeholder="Module Title" class="form-control" required>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="short-title">Short Title </label>
+          <input type="text" id="shortTitle" name="short_title" placeholder="Short Title" class="form-control">          
+        </div>
+        <!-- ModuleCategory Select Container starts -->
+        <div class="form-group col-sm-4">
+          <label for="moduleCategory">Module Category *
+            <button type="button" class="btn btn-sm btn-warning ml-5" data-toggle="modal"
+              data-target="#createModuleCategoryModal">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </label>
+          <select type="text" id="moduleCategory" name="module_category" required>
+            <option value="" selected disabled hidden>choose module category</option>
+            {% for module_category in module_categories%}
+            <option value="{{module_category.id}}">{{module_category.category_type}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <!-- ModuleCategory Select container ends -->
+      </div>
+      <div class="col-12 topnav" style="padding-left: 0px !important; padding-right: 0">
+        <div class="form-group">
+          <label for="description" style="margin-bottom:0rem;">Description *</label><br>
+          <textarea class="w-100" rows="8" id="description" name="description" required></textarea>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-6 " class="form-group">
+          <label for="coverImageInputFileField">Cover Image</label>
+          <input type="file" class="form-control" id="coverImageInputFileField" accept="image/*" name="cover_image"></br>
+	  <button type="submit" class="btn btn-md btn-warning font-weight-bold mt-3" id="submitButton">
+	    Save and continue
+	  </button>
+        </div>
+        <div class="col-sm-6">
+          <img src="#" class="img-fluid img-rounded" id="imagePreview" hidden="hidden" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- modal begins here -->
+<div class="modal" tabindex="-1" role="dialog" id="createModuleCategoryModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Module Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="createModuleCategoryForm" onSubmit="createModuleCategory(event)">
+          <div class="form-group">
+            <label for="categoryType">Category Type <span style="color:red">*</span></label>
+            <input type="text" class="form-control" name="category_type" id="categoryType" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label for="categoryDescription">Category Description <span style="color:red">*</span></label>
+            <textarea class="form-control" name="category_description" id="categoryDescription" required>
+            </textarea>
+          </div>
+          <button type="submit" class="btn btn-sm btn-warning mb-3">Submit</button>
+        </form>
+      </div>
+      <!-- modal footer eliminated -->
+    </div>
+    <!-- modal ends here -->
+    {% endblock %}
+
+    {% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/trumbowyg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+      $("#moduleCategory").select2({ width: 'style' });
+      $("#description").trumbowyg();
+    </script>
+    <script src="{% static 'js/create-module.js' %}" type="text/javascript"></script>
+    {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'student-portal/base.html' %}
+{% load static %}
+{% block page-content %}
+{% endblock page-content %}
+{% block page_specific_js %}
+<script src="{% static 'assets/vendor/moment.min.js' %}"></script>
+<!-- Easy Countdown -->
+<script src="{% static 'assets/vendor/jquery.countdown.min.js' %}"></script>
+<!-- Init -->
+<script src="{% static 'assets/js/countdown.js' %}"></script>
+{% endblock page_specific_js%}

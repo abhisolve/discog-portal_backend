@@ -1,0 +1,6 @@
+{% extends 'admin/change_form.html' %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = "{{ settings.CKEDITOR_BASE_PATH }}"</script>
+{{ block.super }}
+{% endblock %}

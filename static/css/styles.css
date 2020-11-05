@@ -1,0 +1,65 @@
+.hide-message-after-5-seconds{
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    /* FUCK ANYONE WHO USES OPERA */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+.border-bana {
+    border: solid 1px #6c757d;
+}
+
+
+.line-me-reh {
+    display: inline-block;
+}
+
+.custom-btn {
+    background-color:#f9ca33;
+    border-radius: 4px;
+}
+
+.custom-input {
+    margin: 6px;
+    border-radius: 5px;
+}
+
+.select2-selection {
+    height: 34px !important;
+}
+
+.select2-selection__rendered {
+    line-height: 32px !important;
+}

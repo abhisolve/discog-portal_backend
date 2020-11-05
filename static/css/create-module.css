@@ -1,0 +1,106 @@
+
+.topnav {
+  overflow: hidden;
+  border-bottom: 1px solid #cbcccd;
+  padding:0.25rem;
+}
+
+.topnav .navitem {
+  float: left;
+  color: black;
+  text-align: center;
+}
+
+#module-category {
+    min-height: 30px !important;
+}
+
+label{
+  font-weight: bold;
+}
+
+.loader {
+    display:block;
+    margin: auto;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.add-lesson {
+    position: relative;
+    margin-top: 100%;
+}
+
+.button-to-bottom {
+  position: relative;
+  margin-top: 50%;
+}
+body {
+  font-family: sans-serif;
+}
+a {
+  color: #0065ffd1;
+}
+
+#drop-area {
+  border: 2px dashed #ffdb58;
+  border-radius: 20px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+#drop-area.highlight {
+  border-color: purple;
+}
+
+p {
+  margin-top: 0;
+}
+
+.my-form {
+  margin-bottom: 10px;
+}
+
+#gallery {
+  margin-top: 10px;
+}
+
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+#fileElem {
+  display: none;
+}
+
+.error-checkbox {
+  outline: 2px solid #c00;
+}
+
+.error-checkbox:active{
+  outline: 0px;
+}
+
+
+.select2-container .select2-selection--single .select2-selection__rendered{
+    width: 300px;
+}

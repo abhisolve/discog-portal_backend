@@ -1,0 +1,79 @@
+{% extends 'student-portal/base.html' %}
+{% load static %}
+{% block page-content %}
+<div class="container-fluid page__container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'portal:student-dashboard'%}">Home</a></li>
+    <li class="breadcrumb-item active">Dashboard</li>
+  </ol>
+  <h1 class="h2">Dashboard</h1>
+  <div class="card-group" style="margin-left:-6px; margin-right:-6px;">
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 id="in-review-count" class="text-warning mb-0"></h4>
+        <small class="text-muted-light">IN-REVIEW</small>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 id="on-time-count" class="text-success mb-0"></h4>
+        <small class="text-muted-light">ON-TIME</small>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 id="late-count" class="text-danger mb-0"></h4>
+        <small class="text-muted-light">LATE</small>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <h4 id="completed-count" class="text-primary mb-0"></h4>
+        <small class="text-muted-light">COMPLETED</small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4" style="padding:3px;">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4 class="card-title mb-0"><a href="{% url 'portal:in-progress-module' %}">In Progress</a></h4>
+        </div>
+        <a href="{% url 'portal:in-progress-module' %}">
+          <img src="{% static 'img/logo/in_progress.png' %}" alt="In Progress" style="height:288px; width:100%;">
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-4" style="padding:3px;">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4 class="card-title mb-0"><a href="{% url 'portal:completed-modules' %}">Completed</a></h4>
+        </div>
+        <a href="{% url 'portal:completed-modules' %}">
+          <img src="{% static 'img/logo/completed2.png' %}" alt="Completed" style="height:288px; width:100%;">
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-4" style="padding:3px;">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4 class="card-title mb-0"><a href="{% url 'portal:resource' %}">Resources</a></h4>
+        </div>
+        <a href="{% url 'portal:resource' %}">
+          <img src="{% static 'img/logo/resources.png' %}" alt="Resources" style="height:288px; width:100%;">
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-6">
+    </div>
+  </div>
+</div>
+{% endblock page-content%}
+{% block page-internal-drawer %}
+{% include 'student-portal/page-drawer.html' %}
+{% endblock page-internal-drawer %}
+{% block page-specific-js %}
+<script src="{% static 'js/student-dashboard.js' %}" type="text/javascript"></script>
+{% endblock page-specific-js %}

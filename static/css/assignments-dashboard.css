@@ -1,0 +1,78 @@
+.row-margin {
+    margin-top: 10px;
+    padding-right:0px;
+}
+.date-time-style {
+    width: 100%;
+    padding-right: 10px;
+    height: calc(2.25rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    background-size: 8px 10px;
+}
+.column3-class {
+    padding-right: 20px;
+}
+.column9-class {
+}
+.filter-panel-heading-card {
+    padding: 0px !important;
+    overflow: overlay;
+}
+.collapse-heading {
+    color: black;
+    font-weight: 550;
+    text-decoration: none !important;
+    font-size: 12pt;
+    font-family: sans-serif;
+}
+.scroll-class {
+    overflow-y: scroll;
+    height: 949px;
+}
+.module-title {
+    padding-left: 5px;
+}
+.add-button {
+    padding-left: 40px;
+}
+.filter-panel-heading {
+    padding-left: 10px;
+    text-decoration: none;
+}
+.filter-panel {
+    margin-left: 0rem;
+}
+.filter-panel-items-width {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.filter-panel-items-width-height {
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+}
+.filter-label-y {
+    font-size: 15px;
+}
+.filter-label-n {
+    font-size: 15px;
+}
+.table-panel-heading {
+    font-weight: 550;
+    color: black;
+    font-size: 13pt;
+    padding: 10px;
+}
+.table-panel-items-width-height {
+    border-top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.table-panel-items-width {
+    width: 100%;
+}

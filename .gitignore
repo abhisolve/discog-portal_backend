@@ -1,0 +1,9 @@
+# Cached and compiled files
+__pycache__
+*.pyc
+
+
+# editor specific files
+*.*.swp
+.vscode
+.idea

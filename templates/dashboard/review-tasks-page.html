@@ -1,0 +1,145 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load compress %}
+{% block page_title %}
+{% if title %}{{title}}{% endif %}
+{% endblock page_title%}
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" />
+<link rel="stylesheet" href="{% static 'css/assignments-dashboard.css' %}" />
+<style>
+  .scroll-class{
+  position: fixed;
+  }
+  @media (min-width: 768px) {
+  .modal-xl {
+  width: 90%;
+  max-width:1200px;
+  }
+  }
+</style>
+{% endblock extra_css %}
+{% block page_js%}
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+<script src="{% static 'js/review-tasks.js'%}"></script>
+{% endblock page_js %}
+
+{% block content %}
+<div style="padding:0.25rem; margin-bottom: 18px;">
+  <small class="ml-1">
+    <a href="/review-students" class="text-center">
+      < Back to In-Review Students Dashboard
+	</a>
+  </small>
+</div>
+
+<div class="border-bana p-1 table-panel-items-width" style="border: solid 1px #ced4db;">
+  <small class="table-panel-heading">
+    All In-review Tasks
+  </small>
+</div>
+<br>
+<div>
+  <div class="border-bana" style="border: solid 1px #ced4db; margin-top: 0.25rem; margin-left:20px; margin-right:20px; padding: 24px 37px;">
+    <div class="text-right mb-3">
+      <button type="button" onclick="$('#feedbackModal').modal('show');" class="btn btn-warning"><b>Give Feedback</b></button>
+    </div>
+    <table id="inreview-tasks-table" class="table table-bordered table-responsive" style="margin-left:auto; margin-right:auto;"></table>
+  </div>
+</div>
+<div class="modal fade" id="getResponseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+	<h5 class="modal-title" id="exampleModalLabel"><b>Student's Task Response</b></h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+      </div>
+      <div id="response-result" class="modal-body">
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="getQuizResponseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+	<h5 class="modal-title" id="exampleModalLabel"><b>Student's Quiz Response</b></h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+      </div>
+      <div id="quiz-response-result" class="modal-body">
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<h5 class="modal-title" id="exampleModalLabel"><b>Feedback<b></h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+      </div>
+      <div class="modal-body">
+	<div class="form-group" hidden>
+	  <input type="file" id="upload-review-file" accept=".pdf, .docx, .doc, .odt, .ott, .txt">
+	</div>
+	<div class="form-group">
+	  <label for="enrollment-status">Enrollment Status*</label>
+	  <select id="enrollment-status" class="custom-select">
+	    <option value="" selected disabled hidden> Select Status</option>
+	    <option value="COM">COMPLETED</option>
+	    <option value="RES">RE-SUBMIT</option>
+	  </select>
+	</div>
+	<div class="form-group">
+	  <label for="feedback-text" class="col-form-label">Comment *</label>
+	  <textarea class="form-control" id="feedback-text" required></textarea>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-warning" onclick="sendFeedback()"><b>Submit</b></button>
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="taskrejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+	<h5 class="modal-title" id="exampleModalLabel"><b>Rejection comment<b></h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+      </div>
+      <div class="modal-body">
+	<div class="form-group">
+	  <label for="reject-feedback" class="col-form-label">Comment *</label>
+	  <textarea class="form-control" id="reject-feedback" required></textarea>
+	</div>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-warning" onclick="taskReject()"><b>Submit</b></button>
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

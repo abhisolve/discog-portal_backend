@@ -1,0 +1,238 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>DISCOG LMS | Assignments</title>
+    <!-- fonts start -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- font ends here -->
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"
+	  media="screen">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/in-progress-module.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/all-completed-modules.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/assignments-dashboard.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <!-- Page specific CSS -->
+    {% block extra_css %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'portal:dashboard' %}">
+	<img src="{% static 'img/logo/logodsc.png' %}" width="40" height="40"
+	     class="d-inline-block align-top img-fluid" alt="">
+      </a>
+      <h5 class="float-left mb-0 font-weight-bold nav-bar-head-font">
+	{{name|title}}'s Assignments
+      </h5>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+	      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav ml-auto">
+	  {% if request.user.is_authenticated %}
+	  <li class="nav-item">
+	    <a class="nav-link" href="{% url 'discoauth:logout' %}" tabindex="-1" aria-disabled="true"
+	       style="border-left: solid 1px #b9b8b8;">Logout</a>
+	  </li>
+	  {% endif %}
+	</ul>
+      </div>
+    </nav>
+
+    <div class="row h-100 container-fluid row-margin">
+      <div class="col-md-3 column3-class scroll-class">
+	<div class="filter-panel row">
+	  <div class="border-bana p-1 filter-panel-items-width"
+	       style="margin-bottom:0rem; border: 1px solid #cbcccd">
+	    <small class="filter-panel-heading"><a href="/assignments-dashboard"
+						   class="text-center back-link-font-color" style="color: #037afb">
+		< Back To Assignments Dashboard</a></small>
+		  </div>
+	  <div class="border-bana p-1 filter-panel-items-width-height" style="border: 1px solid #cbcccd" hidden>
+	    <div class="accordion" id="filters-accordian">
+	      <div class="card">
+
+		<div class="card-header filter-panel-heading-card">
+		  <h3 class="filter-panel-heading" style="margin-bottom:0rem"><button
+										class="btn btn-link collapse-heading" type="button" data-toggle="collapse"
+										data-target="#filters" aria-expanded="true" aria-controls="filters">
+		      Filters</button></h3>
+		</div>
+
+		<div id="filters" class="collapse" aria-labelledby="filter-options"
+		     data-parent="#filters-accordian">
+		  <div class="card-body" style="padding:1rem">
+		    <form id="active-status-filter">
+		      <label class="radio-inline filter-label-y">
+			<input type="radio" name="optradio" value="activated">&nbsp;Activated
+		      </label>
+		      <label class="radio-inline filter-label-n" style="padding-left: 70px;">
+			<input type="radio" name="optradio" value="deactivated">&nbsp;Deactivated
+		      </label>
+		    </form>
+		    <form id="next-task-filter">
+		      <label class="radio-inline filter-label-y">
+			<input type="radio" name="optradio" value="next-task-yes">&nbsp;Next Task
+			(Y)
+		      </label>
+		      <label class="radio-inline filter-label-n" style="padding-left: 43px;">
+			<input type="radio" name="optradio" value="next-task-no">&nbsp;Next Task (N)
+		      </label>
+		    </form>
+		    <form id="current-task-filter">
+		      <label class="radio-inline filter-label-y">
+			<input type="radio" name="optradio" value="current-task-yes">&nbsp;Current
+			Task (Y)
+		      </label>
+		      <label class="radio-inline filter-label-n" style="padding-left: 23px;">
+			<input type="radio" name="optradio" value="current-task-no">&nbsp;Current
+			Task (N)
+		      </label>
+		    </form>
+		    <form id="pending-task-filter">
+		      <label class="radio-inline filter-label-y">
+			<input type="radio" name="optradio" value="pending-task-yes">&nbsp;Pending
+			Task (Y)
+		      </label>
+		      <label class="radio-inline filter-label-n" style="padding-left:19px">
+			<input type="radio" name="optradio" value="pending-task-no">&nbsp;Pending
+			Task (N)
+		      </label>
+		    </form>
+		  </div>
+		  <!--card body div end-->
+		</div>
+		<!--target area div end -->
+	      </div>
+	      <!--card div end -->
+	    </div><!-- accordian div end -->
+	  </div><!-- border bana div end -->
+	  {% for category in module_categories %}
+	  <div class="border-bana p-1 filter-panel-items-width-height" style="border: 1px solid #cbcccd">
+	    <div class="accordion" id="module-category-accordian">
+	      <div class="card">
+
+		<div class="card-header filter-panel-heading-card" id="category-data-{{category.id}}">
+		  <h3 class="filter-panel-heading" style="margin-bottom:0rem">
+		    <button class="btn btn-link collapse-heading" type="button" data-toggle="collapse"
+			    data-target="#category-id-{{category.id}}" aria-expanded="true"
+			    aria-controls="category-id-{{category.id}}">Category - {{forloop.counter}} :
+		      {{ category.category_type }}
+		    </button>
+		  </h3>
+		</div>
+
+		<div id="category-id-{{category.id}}" class="collapse"
+		     aria-labelledby="category-data-{{category.id}}"
+		     data-parent="#module-category-accordian">
+		  <div id="modules-list" class="card-body">
+		    {% for module in modules %}									
+		    {% ifequal category.id module.module_category.id %}
+		    <h6 class="module-title">
+		      <p style="width:300px; display:inline-block;">Module ID - {{module.id}} : {{ module.title|title }}</p>
+		      <span>
+			<button type="button" onclick="addAssignment({{module.id}})" style="background-color:#f9ca33; cursor: pointer; float: right; display:inline-block;" class="btn btn-sm btn warning">
+			  <b>
+			    Assign
+			  </b>
+			</button>
+		      </span>
+		    </h6>
+		    {% endifequal %}
+		    {% endfor %}
+		  </div>
+		  <!--card-body div end -->
+		</div>
+		<!--data-target div end -->
+
+	      </div>
+	      <!--card div end -->
+	    </div>
+	    <!--module-category-accordian div end -->
+	  </div><!-- border-bana02-div-end -->
+	  {% endfor %}
+	</div><!-- row div end -->
+      </div><!-- col -3 div end -->
+      <div class="col-md-9 column9-class">
+	<div class="table-panel row">
+	  <div class="border-bana p-1 table-panel-items-width"
+	       style="margin-bottom:0.25rem; border: 1px solid #cbcccd">
+	    <small class="table-panel-heading">All records</small>
+	  </div>
+	  <div class="border-bana p-1 table-panel-items-width-height" style="border: 1px solid #cbcccd">
+	    <br>
+	    <table id="specific-assignments-dashboard-table"
+		   class="table table-bordered table-responsive w-100"></table>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <div id="editModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+	<div class="modal-content">
+
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	  </div>
+
+	  <div class="modal-body">
+	    <div class="form-group">
+	      <label>Date Due</label><br>
+	      <input type="datetime-local" id="date-due" step="1" name="date-due" class="date-time-style">
+	    </div>
+	  </div>
+
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-sm btn warning" onclick="updateAssignment()" style="background-color:#f9ca33"><b>Save</b></button>
+	    <button type="button" class="btn btn-sm btn warning" data-dismiss="modal" style="background-color: #ced4db"><b>Cancel</b></button>
+	  </div>
+
+	</div>
+
+      </div>
+    </div>
+    <!-- jQuery first, then Bootstrap JS. -->
+    <!-- Optional Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"
+	    type="text/javascript"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'js/utils.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/custom-notify.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/assignments-dashboard.js' %}" type="text/javascript"></script>
+    {% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.min.js"
+	    type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="{% static 'assets/vendor/moment.min.js' %}" type="text/javascript"></script>
+    {% compress js %}
+    {% endcompress %}
+    {% endblock %}
+  </body>
+
+</html>

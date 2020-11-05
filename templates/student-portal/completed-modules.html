@@ -1,0 +1,72 @@
+{% extends 'student-portal/base.html' %}
+{% load static %}
+{% block page-content %}
+<div class="container-fluid page__container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'portal:student-dashboard'%}">Home</a></li>
+    <li class="breadcrumb-item active">Completed Modules</li>
+  </ol>
+  <h1 class="h2">Completed Modules</h1>
+  
+  {% for module in modules %}
+  <div class="accordion" id="completed-modules-accordian">
+    
+    <div class="card">
+    
+      <div class="card-header" id="module-{{module.id}}" onclick="ModuleFeedback({{module.id}}, {{ request.user.id }})" style="padding:.3rem 0.1rem;">
+	<h4 class="mb-0">
+	  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#module-data-{{module.id}}" aria-expanded="true" aria-controls="module-data-{{module.id}}" style="font-size: 21px;">
+	    {{module.title|title}}
+	  </button>
+	</h4>
+      </div>
+      <div id="module-data-{{module.id}}" class="collapse" aria-labelledby="module-{{module.id}}" data-parent="#completed-modules-accordian">
+	<div class="card-body lessons-card">
+	  {% for lessons in module_lessons %}
+	  {% if lessons.module.id == module.id %}
+	  <h6 class="lesson-heading">Lesson -&#62; {{lessons.lesson_name}}</h6>
+	  {% for task in lesson_tasks %}
+	  {% if task.lesson.id == lessons.id %}
+	  <ul style="list-style-type:none;">
+	    <li class="tasks-name">Task - {{task.task_name}}</li>
+	  </ul>
+	  {% endif %}
+	  {% endfor %}
+	  {% endif %}
+	  {% endfor %}
+	  <label for="file-{{module.id}}" hidden><b>Review File:</b></label>
+	  <button id="file-{{module.id}}" type="button" class="btn btn-sm btn warning" onclick="" data-toggle="modal" data-target="#fileviewModal" style="background-color:#ffca12; margin-left:5px;" hidden><b>View</b></button>
+	  <label for="comment-{{module.id}}"><b>Review Comment:</b></label>
+	  <p id="comment-{{module.id}}">
+	  </p>
+	</div>
+      </div>
+    </div>
+    {% endfor %}
+    <div id="fileviewModal" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="width: 70% !important; height: 100% !important; max-width: none !important;">
+	
+      <!-- Modal content-->
+      <div class="modal-content" style="height: 100% !important;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal">&times;</button>
+	</div>
+	<div id="file-view-area" class="modal-body">
+	</div>
+	<div class="modal-footer">
+	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+{% include "student-portal/pagination.html" %}
+{% block page-internal-drawer %}
+{% include 'student-portal/page-drawer.html' %}
+{% endblock page-internal-drawer %}
+{% endblock page-content %}
+{% block page-specific-js %}
+<script src="{% static 'js/all-completed-modules.js' %}" type="text/javascript"></script>
+{% endblock page-specific-js%}

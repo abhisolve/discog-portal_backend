@@ -1,0 +1,138 @@
+/*
+@media screen and (min-width: 1080px){
+  #show-task {
+    max-height: 900px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+} */
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #080808; 
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot:hover{
+  background-color: #080808;
+}
+
+.internal-dot {
+  height: 10px;
+  width: 10px;
+  background-color:#f9cb35; 
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.intenal-dot:hover{
+  background-color: #c59b10;
+}
+
+
+small {
+  color: grey;
+}
+
+a:link {
+  color: grey;
+}
+
+.progress-bar-border{
+  width: 6%;
+  border: solid 1px;
+  display: inline-block;
+  padding: 15px;
+}
+
+td{
+  width: 150px;
+}
+
+.thick-hr{
+  height: 2px;
+}
+
+#complete-percentage {
+  font-weight: bolder !important;
+  font-size: medium;
+}
+
+hr{
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+}
+
+.create-module {
+  background-color: #f9ca33;
+}
+
+input[type='search']{
+  border-radius: 10px;
+}
+
+#show-pdf-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#file-to-upload {
+	display: none;
+}
+
+#pdf-main-container {
+	width: 400px;
+	margin: 20px auto;
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+

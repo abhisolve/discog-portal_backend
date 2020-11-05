@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+
+ <head>
+  <title>In Progress Icon</title>
+
+  <!--inject:css -->
+  <link rel="stylesheet" href="/styles/styles.min.css">
+  <!-- endinject -->
+
+  <!-- inject:head:js -->
+  <script src="/js/vendors.min.js"></script>
+  <!-- endinject -->
+  
+  <meta name="description" content="Free In Progress icon in SVG and PNG. Free download in one click.">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/styles/carbon.css">
+  <link rel="icon" href="/images/favicon.ico">
+ </head>
+
+ <body class="mdc-typography">
+  <div class="page-twopanes">
+   <nav class="mdc-permanent-drawer page-pane page-menupane">
+    <div class="mdc-list-group sidebar">
+     <div class="mdc-list mdc-list--dense sidebar__inner">
+          
+    <h3 class="mdc-list-group__subheader">Tags</h3>
+    
+        <a class="mdc-list-item" href="/free-icons/web">
+    Web
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/site">
+    Site
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/data">
+    Data
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/upload">
+    Upload
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/speed">
+    Speed
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/graphic">
+    Graphic
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/progress">
+    Progress
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/digital">
+    Digital
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/technology">
+    Technology
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/interface">
+    Interface
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/website">
+    Website
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/downloading">
+    Downloading
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/uploading">
+    Uploading
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/loader">
+    Loader
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/ui">
+    UI
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/loading">
+    Loading
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/uploader">
+    Uploader
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/completing">
+    Completing
+    
+</a>
+        
+    
+        <a class="mdc-list-item" href="/free-icons/progressbar">
+    Progressbar
+    
+</a>
+        
+            <div role="separator" class="mdc-list-divider"></div>
+        
+    
+
+     </div>
+    </nav>
+
+    <div class="demo-content page-pane page-contentpane">
+     
+     <div style="background-color: #3F51B5; margin-left: -20px;" class="bg-iconpage"></div>
+     
+     <!-- TODO: #324 - Should switch to .mdc-toolbar--fixed -->
+     <main class="demo-main">
+      
+      <div class="mdc-text-field mdc-text-field--fullwidth">
+       <script>
+
+        function search(event) {
+         if (event.keyCode != 13) {
+          return true;
+         }
+
+         document.location = "/free-icons/" + document.getElementById('search').value
+        }
+       </script>
+
+       <input class="mdc-text-field__input" id="search" type="text" placeholder="Search For Icons" aria-label="Search For Icons" onkeypress="return search(event);">       
+      </div>
+      <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7DLKQL&placement=visualpharmcom" id="_carbonads_js"></script>
+      <div class="page-icon-landing">    
+    <div class="breadcrumbs">
+    
+        <a href="/">Free Icons</a>
+        /
+    
+        <a href="/free-icons/in progress-595b40b85ba036ed117dc1d7">In Progress</a>
+        
+    
+</div>
+
+    <h1 class="mdc-typography--display1 title-main title-main--margin mdc-typography--adjust-margin">In Progress Icon</h1>
+</div>
+
+<figcaption class="demo-surface mdc-elevation--z3 icon-info">
+    
+    <img src="https://visualpharm.com/assets/297/In Progress-595b40b85ba036ed117dc1d7.svg" alt="in progress" width="256" height="256" class="icon-huge">
+    
+
+    <div class="icon-info-properties">
+        <h2 class="mdc-typography--headline mdc-typography--adjust-margin"><a href="https://icons8.com/icon/pack/user interface/p1em">1em User Interface States </a> by <a href="https://icons8.com">icons8</a></h2>
+<!--        
+        <p>
+            This style is characterized by being flat, obviously. It has bright colors that grotesquely represent the materials.
+        </p>
+-->    
+        <h3><a href="https://icons8.com/license">Linkware License</a></h3>
+        
+        <p>
+            This license allows free use for commercial use, but requires a link on each page where the icons appear. It’s close to Creative
+            Commons’ Attribution.
+        </p>
+        
+    </div>
+</figcaption>
+
+<div class="button-block-iconpage">
+
+    <!--Download all-->
+    <a class="mdc-button mdc-button--accent mdc-button--raised button-download mdc-ripple-surface" href="https://visualpharm.com/assets/297/In Progress-595b40b85ba036ed117dc1d7.svg" download>        
+        Download SVG Vector
+    </a>
+
+    <!--Other formats
+     <div class="links-otherformats">
+        Download other formats of In Progress Icon:
+        <a href="#other">PNG bitmap</a>,
+        <a href="#other">EPS vector</a>,
+        <a href="#other">PDF vector</a>.
+    </div> 
+-->
+</div>
+<h2 class="mdc-typography--display1"> 1em User Interface States Icons</h2>
+<div class="mdc-grid-list icons-block-tiles">
+    <ul class="mdc-grid-list__tiles">
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/active state-595b40b85ba036ed117dbea6">
+          <img src="https://visualpharm.com/assets/482/Active State-595b40b85ba036ed117dbea6.svg" title="Active State Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Active State Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/select-595b40b85ba036ed117dbfbd">
+          <img src="https://visualpharm.com/assets/994/Select-595b40b85ba036ed117dbfbd.svg" title="Select Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Select Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/collect-595b40b85ba036ed117dbffb">
+          <img src="https://visualpharm.com/assets/781/Collect-595b40b85ba036ed117dbffb.svg" title="Collect Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Collect Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/external-595b40b85ba036ed117dc0d4">
+          <img src="https://visualpharm.com/assets/843/External-595b40b85ba036ed117dc0d4.svg" title="External Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">External Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/final state-595b40b85ba036ed117dc109">
+          <img src="https://visualpharm.com/assets/593/Final State-595b40b85ba036ed117dc109.svg" title="Final State Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Final State Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/inactive state-595b40b85ba036ed117dc1b5">
+          <img src="https://visualpharm.com/assets/597/Inactive State-595b40b85ba036ed117dc1b5.svg" title="Inactive State Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Inactive State Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/initial state-595b40b85ba036ed117dc1c4">
+          <img src="https://visualpharm.com/assets/891/Initial State-595b40b85ba036ed117dc1c4.svg" title="Initial State Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Initial State Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/internal-595b40b85ba036ed117dc1ce">
+          <img src="https://visualpharm.com/assets/58/Internal-595b40b85ba036ed117dc1ce.svg" title="Internal Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Internal Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/in progress-595b40b85ba036ed117dc1d7">
+          <img src="https://visualpharm.com/assets/297/In Progress-595b40b85ba036ed117dc1d7.svg" title="In Progress Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">In Progress Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/one way transition-595b40b85ba036ed117dc30f">
+          <img src="https://visualpharm.com/assets/346/One Way Transition-595b40b85ba036ed117dc30f.svg" title="One Way Transition Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">One Way Transition Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/quick mode off-595b40b85ba036ed117dc3b2">
+          <img src="https://visualpharm.com/assets/2/Quick Mode Off-595b40b85ba036ed117dc3b2.svg" title="Quick Mode Off Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Quick Mode Off Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/quick mode on-595b40b85ba036ed117dc3b3">
+          <img src="https://visualpharm.com/assets/413/Quick Mode On-595b40b85ba036ed117dc3b3.svg" title="Quick Mode On Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Quick Mode On Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/states-595b40b85ba036ed117dc4c7">
+          <img src="https://visualpharm.com/assets/504/States-595b40b85ba036ed117dc4c7.svg" title="States Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">States Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/submit progress-595b40b85ba036ed117dc4df">
+          <img src="https://visualpharm.com/assets/583/Submit Progress-595b40b85ba036ed117dc4df.svg" title="Submit Progress Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Submit Progress Icon</span>
+      </span>
+    </li>
+    
+    <li class="mdc-grid-tile tile-icon">
+      <div class="mdc-grid-tile__primary">
+        <div class="mdc-grid-tile__primary-content icon-container">        
+        <a href="/free-icons/transition both directions-595b40b85ba036ed117dc560">
+          <img src="https://visualpharm.com/assets/435/Transition Both Directions-595b40b85ba036ed117dc560.svg" title="Transition Both Directions Icon" width="100" class="icon-image">
+        </a>
+        </div>
+      </div>
+      <span class="mdc-grid-tile__secondary">
+            <span class="mdc-grid-tile__title">Transition Both Directions Icon</span>
+      </span>
+    </li>
+    
+    </ul>
+</div>
+     </main>
+    </div>
+
+    <script>
+     (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+       (i[r].q = i[r].q || []).push(arguments)
+      },
+      i[r].l = 1 * new Date();
+      a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+     ga('create', 'UA-22830943-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+   </body>
+
+  </html>

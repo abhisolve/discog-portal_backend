@@ -1,0 +1,87 @@
+{% extends 'dashboard/base.html' %}
+
+{% load static %}
+{% load compress %}
+{% block page_title %}
+{% if title %}{{title}}{% endif %}
+{% endblock page_title%}
+{% block extra_css %}
+{% compress css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+{% endcompress %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top: 3rem">
+  <div class="row justify-content-center">
+    <!-- Card Begin  -->
+    {% if request.user.is_admin or user_role == "MAN" %}
+      <div class="card card-size">
+        <div class="card-header alert alert-warning">
+          <h5 class="text-center mb-0"><a href="/user-account-dashboard"><b>User Accounts</b></a></h5>
+        </div>
+        <div class="card-body" style="padding: 0px;">
+          <a href="{% url 'portal:user-account-dashboard' %}">
+            <img class="card-img-top img-size" src="{% static 'img/logo/user-accounts2.png' %}" alt="user"> 
+          </a> 
+        </div>
+      </div>
+      {% endif %}
+      
+    {% if request.user.is_admin or user_role == "MAN" or user_role == "CC"%}
+      <div class="card card-size">
+        <div class="card-header alert alert-warning">
+          <h5 class="text-center mb-0"><a href="/assignments-dashboard"><b>Assignments</b></a></h5>
+        </div>
+        <div class="card-body" style="padding: 0px;">
+	  <a href="{% url 'portal:assignments-dashboard' %}">
+            <img src="{% static 'img/logo/assignments.png' %}" class="card-img-top img-size" />
+	  </a>
+        </div>
+      </div>
+      {% endif %}
+      
+    {% if request.user.is_admin or user_role == "MAN" or user_role == "MOD" %}
+      <div class="card card-size">
+	<div class="card-header alert alert-warning">
+	  <h5 class="text-center mb-0"><a href="/review-students"><b>Pending Review</b></a></h5>
+	</div>
+	<div class="card-body" style="padding: 0px;">
+	  <a href="/review-students">
+	    <img class="card-img-top" src="{% static 'img/logo/undraw_code_review_l1q9 (1).png' %}" alt="review">
+	  </a>
+	</div>
+      </div>
+      {% endif %}
+  </div>
+  <div class="row justify-content-center">
+    {% if request.user.is_admin or user_role == "MAN" or user_role == "CC" %}
+      <div class="card card-size">
+        <div class="card-header alert alert-warning">
+          <h5 class="text-center mb-0"><a href="/content-manager/"><b>Content Manager</b></a></h5>
+        </div>
+        <div class="card-body" style="padding: 0px;">
+          <a href="/content-manager/">
+            <img class="card-img-top img-size" src="{% static 'img/logo/content-manager.png' %}" alt="content">
+          </a>
+        </div>
+      </div>
+      {% endif %}
+      {% if request.user.is_admin or user_role == "MAN" or user_role == "CC" %}
+      <div class="card card-size">
+	<div class="card-header alert alert-warning">
+	  <h5 class="text-center mb-0"><a href="{% url 'portal:resource-manager' %}"><b>Resource Manager</b></a></h5>
+	</div>
+	<div class="card-body" style="padding: 0px;">
+	  <a href="{% url 'portal:resource-manager' %}">
+	    <img class="card-img-top img-size" src="{% static 'img/logo/add-resource.png' %}" alt="resource">
+	  </a>
+	</div>
+      </div>
+  </div>
+  {% endif %}
+      
+    <!-- Card End -->
+  </div>
+</div>
+{% endblock %}

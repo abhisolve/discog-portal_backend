@@ -1,0 +1,139 @@
+{% load static %}
+{% load compress %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>DISCOG Portal</title>
+    <!-- fonts start -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- font ends here -->
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"
+          media="screen">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/in-progress-module.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/all-completed-modules.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/assignments-dashboard.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/utils.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/resource.js' %}" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script defer src="https://friconix.com/cdn/friconix.js"></script>
+    <!-- Page specific CSS -->
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% if request.user.is_student %}
+    <a class="navbar-brand" href="{% url 'student-dashboard' %}">
+        <img src="{% static 'img/logo/logodsc.png' %}" width="40" height="40" class="d-inline-block align-top img-fluid"
+             alt="">
+    </a>
+    {% elif user.is_admin %}
+    <a class="navbar-brand" href="/dashboard">
+        <img src="{% static 'img/logo/logodsc.png' %}" width="40" height="40" class="d-inline-block align-top img-fluid"
+             alt="">
+    </a>
+    {% endif %}
+    <h5 class="float-left mb-0 font-weight-bold nav-bar-head-font">{{resource.resource_title}}</h5>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}" tabindex="-1" aria-disabled="true"
+                   style="border-left: solid 1px #b9b8b8;">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="row h-100 container-fluid row-margin">
+
+    <div class="col-md-3 column3-class">
+
+        <div class="filter-panel row">
+
+            <div class="border-bana p-1 filter-panel-items-width mb-1" style="height: 35px; border: solid #cbcccd 1px;">
+                <small class="filter-panel-heading"><a href="{% url 'resource' %}"
+                                                       class="text-center back-link-font-color">< Back To Resource
+                    Dashboard</a></small>
+            </div>
+            {% for parts in resource.resources_data.all %}
+            <!--<div class="card-body border-bana">-->
+
+            <!--<h6 class="mb-0 ml-3" style="color:rgb(255,202,18);">-->
+            <!--Part {{forloop.counter}} - {{parts.title}}-->
+
+            <!--</h6>-->
+            <!--<span class="add-button">-->
+            <!--<button type="button" onclick="showResource({{parts.id}})" style="background-color:#f9ca33">-->
+            <!--<b>View</b>-->
+            <!--</button>-->
+            <!--{% if parts.can_be_downloaded == True %}-->
+            <!--<a href="{{parts.resource_media_file.url}}">-->
+            <!--<button type="button" onclick="" style="background-color:#f9ca33">-->
+            <!--<b>Download</b>-->
+            <!--</button>-->
+            <!--</a>-->
+            <!--{% endif %}-->
+            <!--</span>-->
+
+            <!--<br>-->
+
+            <!--</div>-->
+
+            <div class="card w-100 border-bana" style="border: solid #cbcccd 1px;border-radius: 0;">
+                <div class="card-body">
+                    <h6 class="card-title">Part {{forloop.counter}} - {{parts.title}}</h6>
+                    <button type="button" onclick="showResource({{parts.id}}, {{forloop.counter}})" style="background-color:#f9ca33">
+                        <b>View</b>
+                    </button>
+                    {% if parts.can_be_downloaded == True %}
+                    <button type="button" style="background-color:#f9ca33">
+                        <a href={{parts.resource_media_file.url}} style="color: black;" download><b>Download</b></a>
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div> <!-- filter panel row div end -->
+
+    </div> <!-- col-3 div end -->
+
+    <div class="col-md-9 column9-class">
+
+        <div class="table-panel row">
+
+            <div class="border-bana p-1 table-panel-items-width mb-1" style="height: 35px; margin-bottom: 1rem;border: solid #cbcccd 1px;">
+                <small class="table-panel-heading" id="postTitle"></small>
+            </div>
+
+            <div id="show-resource" class="card-body border-bana" style="text-align: center; border: solid #cbcccd 1px;">
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

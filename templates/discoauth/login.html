@@ -1,0 +1,36 @@
+{% extends 'discoauth/base.html'%}
+{% load static %}
+{% load compress %}
+{% block extra_css %}
+{% compress css %}
+<link rel="stylesheet" href="{% static 'css/login-style.css' %}" />
+{% endcompress %}
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row" style="justify-content:center;">
+    <div class="hide-message-after-5-seconds">
+      {% for message in messages %}
+      <div class="alert text-right {{ message.tags }}" role="alert">
+	<medium>{{ message }}</medium>
+      </div>
+      {% endfor %}
+      </div>
+  </div>
+  <div class="login-block">
+    <h1 style="margin-bottom: 50px; margin-top:120px; color:#f9ca33"><strong>
+	Login
+    </h1></strong>
+    <form action="" method="post">
+      {% csrf_token %}
+      <label for="fname">Email</label>
+      <small><input type="email" name="email" placeholder="Email" id="username" style="margin-bottom: 35px;" required/></small>
+      <label for="fname">Password</label>
+      <small><input type="password" name="password" placeholder="Password" id="password" class="mb-1" required/></small>
+      <small><a href="{% url 'discoauth:forgot-password' %}" Style="padding-left:165px;">Forgot password?</a></small>
+      <button style= "background-color:#f9ca33; border:none" type="submit">LOG IN</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

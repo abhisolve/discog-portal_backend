@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block page-title %}Student - Dashboard {% endblock page-title %}</title>
+
+    <!-- Prevent the application portal from appearing in search engines -->
+    <meta name="robots" content="noindex">
+    {% block base-css %}
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" href="{% static 'assets/vendor/perfect-scrollbar.css' %}" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link type="text/css" href="{% static 'assets/css/material-icons.css' %}" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link type="text/css" href="{% static 'assets/css/fontawesome.css' %}" rel="stylesheet">
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+    {% endblock base-css %}
+    {% block page-specific-css %}
+    {% endblock page-specific-css %}
+</head>
+
+<body class=" layout-fluid">
+    {% block preloader %}
+    <div class="preloader" hidden>
+        <div class="sk-double-bounce">
+            <div class="sk-child sk-double-bounce1"></div>
+            <div class="sk-child sk-double-bounce2"></div>
+        </div>
+    </div>
+    {% endblock preloader %}
+
+    <!-- Header Layout -->
+    <div class="mdk-header-layout js-mdk-header-layout">
+        {% block content-header %}
+        <!-- Header -->
+        <div id="header" data-fixed class="mdk-header js-mdk-header mb-0">
+            <div class="mdk-header__content">
+                <!-- Navbar -->
+                <nav id="default-navbar" class="navbar navbar-expand navbar-dark bg-warning m-0">
+                    <div class="container-fluid">
+                        <!-- Toggle sidebar -->
+                        <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
+                            <span class="material-icons">menu</span>
+                        </button>
+                        <!-- Brand -->
+                        <a href="{% url 'portal:student-dashboard' %}" class="navbar-brand">
+                            <img src="{% static 'assets/images/logo/white.svg' %}" class="mr-2" alt="discog_logo"
+                                data-id="normal" />
+                            <span class="d-none d-xs-md-block">Discog</span>
+                        </a>
+                        <!-- Search -->
+                        {% block page_search %}
+                        {% endblock page_search %}
+
+                        <div class="flex"></div>
+
+                        <!-- Menu -->
+                        <ul class="nav navbar-nav flex-nowrap d-none d-lg-flex">
+                            <li class="nav-item" hidden>
+                                <a class="nav-link" href="student-forum.html">Application Reviews</a>
+                            </li>
+                            <li class="nav-item" hidden>
+                                <a class="nav-link" href="student-help-center.html">Appliation help</a>
+                            </li>
+                        </ul>
+                        <!-- Menu -->
+                        <ul class="nav navbar-nav flex-nowrap">
+                            <!-- User dropdown -->
+                            <li class="nav-item dropdown ml-1 ml-md-3">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                                    {% if user.profile_photo %}
+                                        <img
+                                            src="{{user.profile_photo.url}}" alt="Avatar"
+                                            class="rounded-circle" width="50" height="50">
+                                    {% else %}
+                                        <img
+                                            src="{% static 'img/default_avatar.png' %}" alt="Avatar"
+                                            class="rounded-circle" width="50" height="50">
+                                    {% endif %}
+
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="student-account-edit.html" hidden>
+                                        <i class="material-icons">edit</i> Edit Account
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'discoauth:logout' %}">
+                                        <i class="material-icons">lock</i> Logout
+                                    </a>
+                                </div>
+                            </li>
+                            <!-- // END User dropdown -->
+
+                        </ul>
+                        <!-- // END Menu -->
+                    </div>
+                </nav>
+                <!-- // END Navbar -->
+            </div>
+        </div>
+        {% endblock content-header%}
+        <!-- // END Header -->
+        <!-- Header Layout Content -->
+        <div class="mdk-header-layout__content">
+            <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
+                <div class="mdk-drawer-layout__content page ">
+                    {% block page-content %}{% endblock page-content %}
+                </div>
+                {% block page-internal-drawer %}
+                {% endblock page-internal-drawer %}
+            </div>
+            {% block app-settings %}
+            {% endblock app-settings %}
+        </div>
+    </div>
+    {% block page-external-drawer %}
+    {% endblock page-external-drawer %}
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Perfect Scrollbar -->
+    <script src="{% static 'assets/vendor/perfect-scrollbar.min.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    {% block page-specific-js %}
+    {% endblock page-specific-js %}
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'discoauth/base.html'%}
+{% load static %}
+{% block extra_css %}
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'css/login-style.css' %}" />
+{% endblock extra_css %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row" style="justify-content:center;">
+    <div class="hide-message-after-5-seconds">
+      {% for message in messages %}
+      <div class="alert text-right {{ message.tags }}" role="alert">
+	<medium>{{ message }}</medium>
+      </div>
+      {% endfor %}
+      </div>
+  </div>
+  <div class="login-block">
+    <h1 style="margin-bottom: 50px; margin-top:120px; color:#f9ca33">
+	<strong>Set Password</strong>
+    </h1>
+    {% if platform_invite.used is False %}
+    <form action="{% url 'portal:platform-invite' platform_invite.invite_hash %}" method="post" onsubmit="setThePassword(event)">
+      {% csrf_token %}
+      <label for="password">Password</label>
+      <small><input type="password" name="password" placeholder="Password" id="password" style="margin-bottom: 35px;" required/></small>
+      <label for="repassword">Re-Password</label>
+      <small><input type="password" name="re_password" placeholder="Re-Password" id="repassword" class="mb-1" required/></small>
+      <button style= "background-color:#f9ca33; border:none" type="submit">Set Password</button>
+    </form>
+    {% else %}
+    <p>This link has been used once. If you want to reset your password kindly used the button given below</p>
+    <button  onclick="window.location.href='{% url 'discoauth:forgot-password' %}'"class="btn btn-lg btn-warning text-bold mt-3">Reset Password</button>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
