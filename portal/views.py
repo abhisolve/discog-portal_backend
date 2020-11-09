@@ -352,3 +352,9 @@ class PlatformInviteView(View):
                 return redirect("portal:platform-invite", permanent=False, **{'invite_hash': invite_hash})
         except PlatformInvite.DoesNotExist:
             raise Http404("Requested Page Does Not Exist")
+
+
+class CheckRelease(View):
+    def get(self, request):
+        return HttpResponse("Release Page is Working")
+

@@ -27,5 +27,6 @@ urlpatterns = [
     path('forgot-password-page', views.ForgotPasswordPage.as_view(), name='forgot-password-page'),
     path('set-password', views.SetPasswordPage.as_view(), name='set-password'),
     path('edit-resource/<int:pk>/', views.EditResourcePage.as_view(), name='edit-resource'),
-    path('platform-invite/<str:invite_hash>', views.PlatformInviteView.as_view(), name="platform-invite")
+    path('platform-invite/<str:invite_hash>', views.PlatformInviteView.as_view(), name="platform-invite"),
+    path('check-release', views.CheckRelease.as_view(), name='check-release'),
 ]
