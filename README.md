@@ -1,40 +1,39 @@
-# DiscoG LMS Portal
-
+ṭ
 DiscoG is an E-Learning platform, developed under the vision of Gerard Papet. This document aims to explain the working of the entire application, from both the technical and the functional perspective.
 
 ## Technologies Used
-The application is divided into 2 parts as all applications are. One is the backend which is written in [Python] programming language, with the help of [Django] framework. The frontend is written in using HTML, CSS, and Javascript with the help of [Jquery] to perform actions [asynchronously]. 
+The application is divided into 2 parts as all applications are. One is the backend which is written in [Python] programming language, with the help of [Django] framework. The frontend is written in using HTML, CSS, and Javascript with the help of [Jquery] to perform actions [asynchronously].
 
-For the database side, we use [Postgresql] for it's ability to implement native signals, perfomance, and the extensibility. 
+For the database side, we use [Postgresql] for its ability to implement native signals, performance, and extensibility.
 
-For storing and serving the static files, we use [AWS's S3 Bucket]. The reason behind this is explained down below. 
+For storing and serving the static files, we use [AWS's S3 Bucket]. The reason behind this is explained down below.
 
 ## Initial setup
-Intializing and running the application is quite simple. There are two ways you can run the application, you can either chose to build a [Docker image] using Docker. Or you can manually install the dependencies.
+Initializing and running the application is quite simple. There are two ways you can run the application, you can either chose to build a [Docker image] using Docker. Or you can manually install the dependencies.
 
 ### Docker Method
-You'll need to install docker first, you can do this by using `sudo apt install docker.io` if you're running on an Ubuntu based machine. If not, simply follow the instructions on [Docker.com]. 
+You'll need to install docker first, you can do this by using `sudo apt install docker.io` if you're running on an Ubuntu-based machine. If not, simply follow the instructions on [Docker.com].
 
-Once installed, clone the repository to your environment and `cd` into it. Once inside the directory simply use 
+Once installed, clone the repository to your environment and `cd` into it. Once inside the directory simply use
 
 `docker-compose up -d --build`
 
-You'll need to be in `docker` group to run this command, if you're not in that group, simply add yourself in it using `sudo usermod -aG docker $USER`. If you don't want to do that, append `sudo` at the begining of every docker command. 
+You'll need to be in `docker` group to run this command, if you're not in that group, simply add yourself in it using `sudo usermod -aG docker $USER`. If you don't want to do that, append `sudo` at the beginning of every docker command.
 
 *NOTE - You'll need to install `docker-compose` as well if you want to use this method. Follow this [link to install] `docker-compose`.*
 
-Once you run the aforementioned command, you'll see docker going through all the steps to setup the environment. 
+Once you run the aforementioned command, you'll see docker going through all the steps to set up the environment.
 
 If you want to verify if the build was successful you can simply use `docker ps -a`. It should list all the docker processes running. To visit the project you can navigate to, `http://<host>/`
 
 ### Manually Initialization
-The second method is straight forward, even though it's manual. You'll need to first create a database on Postgresql DB instance. 
+The second method is straight forward, even though it's manual. You'll need to first create a database on Postgresql DB instance.
 
-First thing to do here is to login into a Postgresql shell. 
+The first thing to do here is to login to a Postgresql shell.
 
 `psql -U postgres`
 
-If you get an error which pretty much says "You don't have the permission to access it or the password doesn't match." You'll need to login using the `sudo` prefix.
+If you get an error that pretty much says "You don't have the permission to access it or the password doesn't match." You'll need to log in using the `sudo` prefix.
 
 `sudo psql -U postgres`
 
@@ -42,9 +41,9 @@ This should give you a postgresql DB shell. Time to create your database.
 
 `postgres=# create database <database_name>`
 
-You can verify that the database has been created by using `\l` in your DB shell. It will list all the databases in that instance. 
+You can verify that the database has been created by using `\l` in your DB shell. It will list all the databases in that instance.
 
-Now to setup some environment variables now. Open `entrypoint.sh`, you'll see some `export` variables, you'll need to add values to all of them. 
+Now to set up some environment variables now. Open `entrypoint.sh`, you'll see some `export` variables, you'll need to add values to all of them.
 
 ```
 export DISCOG_DEV_DB=<database-name>
@@ -53,27 +52,27 @@ export POSTGRES_USER_PASSWORD=<postgresql-password>
 export SENTRY_DNS=<sentry-DNS>
 ```
 
-More explanation on what is sentry and how to configure it, is provided down below, in maintainence and logging section.
+More explanation on what is sentry and how to configure it is provided down below, in the maintenance and logging section.
 
 
-Once you're done with all of that, it's time to create a virtual environment for your project. 
+Once you're done with all of that, it's time to create a virtual environment for your project.
 
-*Note - Virtual environment is used by Python to seperate the dependencies for each and every Python project*
+*Note - Virtual environment is used by Python to separate the dependencies for each and every Python project*
 
-To create the virtual environment, simply use the following commands. 
+To create the virtual environment, simply use the following commands.
 
 ```bash
 python3.8 -m pip install virtualenv
 python3.8 -m virtualenv <name_of_the_virtualenv>
 ```
 
-Once creation of virtualenvironment is done, you'll need to activate it. It can be simply done by `sourcing` the `activate` file provided by virtual environment.
+Once the creation of the virtualenvironment is done, you'll need to activate it. It can be simply done by `sourcing` the `activate` file provided by the virtual environment.
 
 ```bash
 source virtualenv_name/bin/activate
 ```
 
-once activated, your bash shell will be amended by the name of your virtual environment. 
+once activated, your bash shell will be amended by the name of your virtual environment.
 
 It's time to install all the dependencies. It can be done by using the following command.
 
@@ -93,24 +92,36 @@ If everything goes smoothly you should see a prompt which says, `server is runni
 *Note - If you run into any errors or issues, feel free to raise an issue on Github (or wherever the repository is hosted) itself. You can also ask Gerard for my contact details.*
 
 ## Storage Solutions
-We're using [AWS S3 Bucket] to store all of our static files, which includes, each and every CSS and JS file. 
+We're using [AWS S3 Bucket] to store all of our static files, which includes, each and every CSS and JS file.
 
-Now you must be wondering why in the world are we opting for another cloud service when we're already paying for a server? Well, it's because your server is only hosted in a particular region, let's say it's either USA or UK or Asia. Now imagine someone from India is trying to access your web app that is hosted in UK, the time it'll take for him to load the web app fully will be increased exponentially as a litreal analog signal is travelling from India to USA. 
+Now you must be wondering why in the world are we opting for another cloud service when we're already paying for a server? Well, it's because your server is only hosted in a particular region, let's say it's either USA or UK, or Asia. Now imagine someone from India is trying to access your web app that is hosted in UK, the time it'll take for him to load the web app fully will be increased exponentially as a literal analog signal is traveling from India to USA.
 
 BUT if we use AWS you'll be served the static files directly from the nearest server rather than one that is 1000 KM away.
 
-Also whenever you're deploying or updating the application on production or sandbox server you'll have to copy your static files to the AWS server, which can be done using 
+Also whenever you're deploying or updating the application on production or sandbox server you'll have to copy your static files to the AWS server, which can be done using
 
 `./manage.py collectstatic`
 
-This command wil upload all the files to your S3 instance, regardless if it has been changed or not.
+This command will upload all the files to your S3 instance, regardless if it has been changed or not.
 
-# Setting up Production server
-You can setup production server by using any number of methods, but going by Gerard's preference we simply deploy from [Github's CI/CD], you can follow that link to learn how to set that up.
+*Note - The preferred hosting solution is [Heroku]. Heroku has an empirical file system, which means everything is deleted in the file system immediately or within a given cycle, hence anything user uploads can't be kept on Heroku. AWS is used to save such files, and a path/location of the file uploaded is saved in the database itself.*
 
-*Note - All the deployments in case of Github's CI/CD should occur from a seperate branch, prefferably from `release/<version>`, because the instance is refreshed everytime there is a push to that branch*
+# Setting up the Production server
+You can set up a production server by using any number of methods, but going by Gerard's preference we simply deploy from [Github's CI/CD], you can follow that link to learn how to set that up.
 
-The best way of deploying on Production or Sandbox is using Docker. 
+*Note - All the deployments in case of Github's CI/CD should occur from a separate branch, preferably from `release/<version>`, because the instance is refreshed every time there is a push to that branch*
+
+## Heroku Setup
+You'll need to link the concerned Github account with your application. To do this, login to the Heroku account, select an application, and you'll be greeted with a page with various options. Navigate to the "Settings" tab and scroll down a bit, you'll see a Github column there, if there's an existing Github repository (that you don't want) you'll need to unlink it.
+
+After you're done unlinking, or in case you don't have a Github account linked at the very beginning, you'll see a "Authorize Github" button, then simply click on it, log in with your concerned account.
+
+After you're done with that as well, in the same "Authorize Github" column, input will be available where you can enter the name of the repository you want to deploy. Once you've selected the repository, you'll be greeted with a popup where you should tick the "Automatically deploy", so whenever changes are pushed to a particular branch (you can choose the branch once you've selected the repository down below) the changes will be built and deployed.
+
+*Note - You only have a certain number of CI/CD builds available in a day, 2000 minutes a day, which is fine but is a good thing to be cautious of, especially if you're hot patching something*
+
+
+The best way of deploying on Production or Sandbox is using Docker.
 
 
 # Logging and Error
@@ -258,19 +269,19 @@ It's super simple to setup sentry, just signup, and sentry will take you through
 
 Let's go through each directory one by one.
 
-1. `api` directory contains all the code for REST API, which is written using [Django REST Framework]. The subdirectories such as `generic`, `staffportal` etc. are app specific API endpoins. Inside `generic` folder there are `modelviewsets` of all the models which provide a CRUD endpoint for the concerened model.
-2. `assignments` - has all the code in relation to assignments, it's also a standard Django app and the structure is standard. A `signals` directory is created to keep aside *model signals* for clearner code.
+1. `api` directory contains all the code for REST API, which is written using [Django REST Framework]. The subdirectories such as `generic`, `staffportal` etc. are app-specific API endpoints. Inside the `generic` folder there are `modelviewsets` of all the models which provide a CRUD endpoint for the concerned model.
+2. `assignments` - has all the code in relation to assignments, it's also a standard Django app and the structure is standard. A `signals` directory is created to keep aside *model signals* for cleaner code.
 3. `contentmanager` - has all the data and models regarding the content manager module.
-4. `discoauth` - is one of the more interesting methods which holds a custom user model and all the authentication related endpoints.
+4. `discoauth` - is one of the more interesting methods which holds a custom user model and all the authentication-related endpoints.
 5. `discogportal` - is the central app in the project.
-6. `discomail` - is used to send scheduled and un-scheduled emails. 
+6. `discomail` - is used to send scheduled and un-scheduled emails.
 7. `docker-compose.yml`, `Dockerfile`, `env`, `Jenkinsfile`, `nginx`, etc. are all devops related directories which help in automating deployment and serving files and configuring servers.
-8. `portal` - is a standard applicaiton which holds a plathora of standard LMS related functionality.
-9. `requirements` - is used to keep all the dependency related files seperated by environment, that is `app.txt` which is essential dependencies for running the application. `dev.txt` for development purposes and `prod.txt` for production instance. 
-10. `settings` - holds the entirity of Django settings, depending on `DJANGO_SETTINGS_MODULE` a production or sandbox or development environment will be activated. 
+8. `portal` - is a standard application which holds a plethora of standard LMS related functionality.
+9. `requirements` - is used to keep all the dependency related files separated by the environment, that is `app.txt` which is essential dependencies for running the application. `dev.txt` for development purposes and `prod.txt` for a production instance.
+10. `settings` - holds the entirety of Django settings, depending on `DJANGO_SETTINGS_MODULE` a production or sandbox or development environment will be activated.
 11. `static` - has all the CSS and JS files.
-12. `templates` - has all the HTML templates related to each app sorted into seperated directories with the name of concerend app.
-13. `visualize-db-schema` is a folder that holds PNG images of Db schema visualized to keep track of how the models were changed overtime. 
+12. `templates` - has all the HTML templates related to each app sorted into separated directories with the name of the concerend app.
+13. `visualize-db-schema` is a folder that holds PNG images of Db schema visualized to keep track of how the models were changed over time.
 
 
 
@@ -289,3 +300,4 @@ Let's go through each directory one by one.
    [Docker image]: <https://docs.docker.com/engine/reference/commandline/image/>
    [link to install]: <https://stackoverflow.com/questions/36685980/docker-is-installed-but-docker-compose-is-not-why#:~:text=To%20install%20a%20different%20version,Compose%20you%20want%20to%20use.&text=Note%3A%20If%20the%20command%20docker,other%20directory%20in%20your%20path.>
    [Docker]: <https://docker.com>
+~                                                                                                                                                                                                                                                                                                                             
