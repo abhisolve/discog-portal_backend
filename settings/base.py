@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    
+
     # third party apps
     'rest_framework',  # https://www.django-rest-framework.org/
     'django_extensions', # https://django-extensions.readthedocs.io/
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     'simple_history', # https://django-simple-history.readthedocs.io/en/latest/index.html
     'debug_toolbar', # For debuging in development mode
     'drf_yasg', # API documentation
+    'corsheaders', # https://pypi.org/project/django-cors-headers/
 
     # project based apps 
     'discoauth', # holds a custom user model
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -59,6 +62,10 @@ AUTH_USER_MODEL = 'discoauth.DiscoUser'
 
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%d-%m-%Y %H:%M",
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }
 
 TEMPLATES = [
@@ -117,3 +124,12 @@ COMPRESS_ENABLED = False
 COMPRESS_OFFLINE = False
 LOGIN_URL = '/auth/login'
 SENDER_MAIL = 'discogdev@exiverprojects.com'
+
+
+from datetime import timedelta
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(seconds=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(seconds=1),
+}

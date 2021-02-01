@@ -1,4 +1,3 @@
-ṭ
 DiscoG is an E-Learning platform, developed under the vision of Gerard Papet. This document aims to explain the working of the entire application, from both the technical and the functional perspective.
 
 ## Technologies Used

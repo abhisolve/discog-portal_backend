@@ -140,7 +140,9 @@ class DiscoUserModelSerializer(ModelSerializer):
 
     class Meta:
         model = DiscoUser
-        fields = '__all__'
+        fields = ('id', 'first_name', 'last_name', 'username', 'email', 'phone_number',\
+                  'profile_photo', 'parent', 'is_active', 'is_admin', 'is_teacher', 'is_superuser', 'is_staff')
+        depth = 2
 
 
 class ParentModelSerializer(ModelSerializer):

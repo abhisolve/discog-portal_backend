@@ -13,6 +13,9 @@ from api.generic.serializers import (ModuleModelSerializer,StudentDetailModelSer
                                      ResourceModelSerializer, DiscoUserModelSerializer, TaskModelSerializer, ModuleLessonModelSerializer,
                                      QuizQuestionModelSerializer, QuizAnswerModelSerializer, QuizQuestionOptionModelSerializer)
 import time
+from django.conf import settings
+from django.utils.text import gettext_lazy as _
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
 
 class CustomUserDetailModelSerializer(ModelSerializer):
@@ -426,3 +429,39 @@ class StaffDashboardStaffDetailModelSerializer(ModelSerializer):
     class Meta:
         model = StaffDetail
         fields = "__all__"
+
+
+class UserDetailModelSerializer(ModelSerializer):
+    profile_photo = SerializerMethodField()
+
+    def get_profile_photo(self, instance):
+        try:
+            print(settings.HOST + instance.profile_photo.url)
+            return settings.HOST + instance.profile_photo.url
+        except Exception as e:
+            return settings.HOST + '/media/static/img/defaults/user.png'
+
+    class Meta:
+        model = DiscoUser
+        fields = ('id', 'first_name', 'last_name', 'email',
+                  'username', 'phone_number', 'profile_photo', 'is_active',
+                  'is_superuser', 'is_admin', 'is_staff', 'is_teacher', 'parent')
+
+
+
+class LogoutJWTSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    default_error_messages = {
+        'bad_token': _('Token is invalid or expired')
+    }
+
+    def validate(self, attrs):
+        self.token = attrs['refresh']
+        return attrs
+
+    def save(self, **kwargs):
+        try:
+            RefreshToken(self.token).blacklist()
+        except TokenError:
+            self.fail('bad_token')

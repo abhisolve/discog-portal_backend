@@ -73,7 +73,7 @@ class QuizAnswerModelViewSet(ModelViewSet):
 class DiscoUserModelViewSet(ModelViewSet):
     queryset = DiscoUser.objects.all()
     serializer_class = DiscoUserModelSerializer
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [AllowAny,]
 
 
 class EnrollmentModelViewSet(ModelViewSet):

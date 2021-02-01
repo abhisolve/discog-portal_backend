@@ -21,7 +21,8 @@ from api.serializers import (ModuleModelSerializer, ModuleCategoryModelSerialize
                              StaffDashboardModalModuleCategoryModelSerializer, StaffDashboardStaffDetailModelSerializer,
                              ContentManagerModelSerializer, SpecificAssignmentPageSerializer, EnrollmentFeedBackPageModelSerializer,
                              CustomStudentDetailModelSerializer, ResourceManagerPageModelSerializer,
-                             StudentsDetailByResourceSerializer, QuizResponseSerializer)
+                             StudentsDetailByResourceSerializer, QuizResponseSerializer, UserDetailModelSerializer,
+                            LogoutJWTSerializer)
 from django.db.models import F, Count
 from discoauth.models import DiscoUser, PasswordReset, Parent
 from django.utils.crypto import get_random_string
@@ -174,8 +175,10 @@ class SendPasswordResetLink(APIView):
     API view which allow to send the reset-password email
     This view is used by /auth/forgot-password page.
     """
+    premission_classes = [AllowAny, ]
     def post(self, request):
         email = request.data.get('email', None)
+        print(email)
         if email is not None:
             try:
                 password_reset_hash = get_random_string(length=100)
@@ -190,10 +193,10 @@ class SendPasswordResetLink(APIView):
                                                                 context={'data': serialized_data.data,
                                                                          'host': settings.HOST}),
                                           email_type='FPE',
-                                          send_now=True)
+                                          send_now=False)
                 return Response({'Success': 'We have sent you a recovery email.'}, status=status.HTTP_200_OK)
             except DiscoUser.DoesNotExist:
-                return Response({'Error': 'This Email is not registerd with our platform. kindly verify, If you are actually registered using this Email Id or not?'},
+                return Response({'error': 'This Email is not registerd with our platform. kindly verify, If you are actually registered using this Email Id or not?'},
                                 status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'error': 'Email is required field.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -203,7 +206,6 @@ class ResetPassword(APIView):
     def post(self, request):
         password_hash = request.data.get('password-hash')
         password = request.data.get('password')
-        print(password_hash)
 
         if password_hash is not None and password is not None:
             try:
@@ -473,7 +475,7 @@ class StaffDashboardStaffDetailModelViewSet(ModelViewSet):
 
 class StaffToStudentRelationModelViewSet(ModelViewSet):
     serializer_class = CustomStudentDetailModelSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     def get_queryset(self):
         user = self.request.user
@@ -621,3 +623,26 @@ class CustomDeleteModuleModelViewSet(ModelViewSet):
                 return Response({'Module': 'Module has been deleted'}, status=status.HTTP_200_OK)
         except Module.DoesNotExist:
             return Response({'error': 'Object Not Found'}, status=status.HTTP_404_OK)
+
+
+class UserDetail(APIView):
+    serializer_class = UserDetailModelSerializer
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            queryset = DiscoUser.objects.get(id=request.user.id)
+            serialized_data = self.serializer_class(queryset)
+            return Response(serialized_data.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'You are not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class LogoutJWT(APIView):
+    serializer_class = LogoutJWTSerializer 
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, *args):
+        sz = self.get_serializer(data=request.data)
+        sz.is_valid(raise_exception=True)
+        sz.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)

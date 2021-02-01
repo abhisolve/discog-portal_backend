@@ -36,7 +36,7 @@ CKEDITOR_BASE_PATH = os.path.join(BASE_DIR, 'static/ckeditor/ckeditor/')
 
 # we need this specific HOST variable that we use in email templates to link back to our website
 # IMPORTANT DONT END THE URL WITH A SLASH
-HOST = 'http://localhost:8001'
+HOST = 'http://localhost:55403'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 FROM_EMAIL = "disco-dev@exiverprojects.com"
 EMAIL_HOST = 'smtp.mailgun.com'
@@ -44,3 +44,5 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'postmaster@mg.exiverprojects.com'
 EMAIL_HOST_PASSWORD = 'd3355741f5e735c31ce891244a4ca649-52b6835e-149823f6'
 EMAIL_USE_TLS = True
+
+CORS_ALLOW_ALL_ORIGINS = True
